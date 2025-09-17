@@ -3,7 +3,7 @@
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
   "version": "0.3.3",
-  "publisher": "haruto-kusanagi",
+  "publisher": "git-commit-manager",
   "engines": {
     "vscode": "^1.74.0"
   },
