@@ -1,0 +1,7 @@
+{
+  "extension.displayName": "Git コミット管理",
+  "extension.description": "プッシュ前にGUIでコミット情報を編集できるビジュアルGitコミット管理ツール",
+  "command.openCommitEditor.title": "コミットエディターを開く",
+  "command.openCommitEditor.category": "Git コミット管理",
+  "view.gitCommitManager.title": "Git コミット管理"
+}

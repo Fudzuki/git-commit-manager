@@ -1,0 +1,146 @@
+{
+  "name": "git-commit-manager",
+  "displayName": "%extension.displayName%",
+  "description": "%extension.description%",
+  "version": "0.3.3",
+  "publisher": "haruto-kusanagi",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "git",
+    "commit",
+    "push",
+    "gui",
+    "management"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-commit-manager.openCommitEditor",
+        "title": "%command.openCommitEditor.title%",
+        "category": "%command.openCommitEditor.category%",
+        "icon": "$(git-commit)"
+      },
+      {
+        "command": "git-commit-manager.stageFile",
+        "title": "ファイルをステージ",
+        "category": "%command.openCommitEditor.category%",
+        "icon": "$(add)"
+      },
+      {
+        "command": "git-commit-manager.unstageFile",
+        "title": "ステージを解除",
+        "category": "%command.openCommitEditor.category%",
+        "icon": "$(remove)"
+      },
+      {
+        "command": "git-commit-manager.editCommitDate",
+        "title": "コミット時間を編集",
+        "category": "%command.openCommitEditor.category%",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "git-commit-manager.showFileDiff",
+        "title": "変更点を表示",
+        "category": "%command.openCommitEditor.category%",
+        "icon": "$(diff)"
+      },
+      {
+        "command": "git-commit-manager.refresh",
+        "title": "更新",
+        "category": "%command.openCommitEditor.category%",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gitCommitManagerContainer",
+          "title": "%view.gitCommitManager.title%",
+          "icon": "$(git-commit)"
+        }
+      ]
+    },
+    "views": {
+      "gitCommitManagerContainer": [
+        {
+          "id": "gitCommitManagerView",
+          "name": "%view.gitCommitManager.title%",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "gitCommitManagerView",
+        "contents": "Git リポジトリを開いてコミット管理を開始しましょう。\n[コミットエディターを開く](command:git-commit-manager.openCommitEditor)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "git-commit-manager.openCommitEditor",
+          "when": "workspaceFolderCount > 0"
+        }
+      ],
+      "scm/title": [
+        {
+          "command": "git-commit-manager.openCommitEditor",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "git-commit-manager.refresh",
+          "when": "view == gitCommitManagerView",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "git-commit-manager.stageFile",
+          "when": "view == gitCommitManagerView && viewItem == modified-file",
+          "group": "inline"
+        },
+        {
+          "command": "git-commit-manager.stageFile",
+          "when": "view == gitCommitManagerView && viewItem == untracked-file",
+          "group": "inline"
+        },
+        {
+          "command": "git-commit-manager.unstageFile",
+          "when": "view == gitCommitManagerView && viewItem == staged-file",
+          "group": "inline"
+        },
+        {
+          "command": "git-commit-manager.editCommitDate",
+          "when": "view == gitCommitManagerView && viewItem == unpushed-commit",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "simple-git": "^3.19.1"
+  }
+}

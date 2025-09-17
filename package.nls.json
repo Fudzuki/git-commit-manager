@@ -1,0 +1,7 @@
+{
+  "extension.displayName": "Git Commit Manager",
+  "extension.description": "Visual Git commit management with GUI editing before push",
+  "command.openCommitEditor.title": "Open Commit Editor",
+  "command.openCommitEditor.category": "Git Commit Manager",
+  "view.gitCommitManager.title": "Git Commit Manager"
+}
